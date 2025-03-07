@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <cstring>
 #include <ctime>
 #include "Game.hpp"
 
@@ -14,7 +15,9 @@ int main(int argc, const char * argv[]) {
     std::srand(std::time(NULL));
     try
     {
-        Game game;
+        uint32_t FieldSize = 10;
+        if (argc == 2) FieldSize = std::atoi(argv[1]);
+        Game game(FieldSize);
         game.Run();
     }
     catch (std::exception &e)
