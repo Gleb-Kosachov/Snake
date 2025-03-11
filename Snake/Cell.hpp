@@ -11,7 +11,7 @@
 #include <cstdint>
 #include "Renderer.hpp"
 
-enum class CollisionResult{ NO_ACTION = 0, APPLE_EATEN, GAME_OVER, NOT_APPLICABLE };
+enum class CollisionResult{ NO_ACTION = 0, APPLE_EATEN, GAME_OVER };
 
 class Cell
 {
@@ -23,41 +23,6 @@ public:
     virtual CollisionResult Collide() = 0;
     
     inline std::pair<int32_t, int32_t> GetCoords() { return std::make_pair(x, y); }
-};
-
-class EmptyCell : public Cell
-{
-public:
-    EmptyCell(int32_t, int32_t);
-    void OnUpdate(Renderer *) override;
-    CollisionResult Collide() override;
-};
-
-class Apple : public Cell
-{
-public:
-    Apple(int32_t, int32_t);
-    void OnUpdate(Renderer *) override;
-    CollisionResult Collide() override;
-};
-
-class SnakeBody : public Cell
-{
-public:
-    SnakeBody(int32_t, int32_t);
-    void OnUpdate(Renderer *) override;
-    CollisionResult Collide() override;
-};
-
-class SnakeHead : public SnakeBody
-{
-    int32_t PrevX = INT32_MAX, PrevY = INT32_MAX;
-public:
-    SnakeHead(int32_t, int32_t);
-    void OnUpdate(Renderer *) override;
-    CollisionResult Collide() override;
-    void Move(const std::pair<int32_t, int32_t> &);
-    bool DirectionSuits(const std::pair<int32_t, int32_t> &);
 };
 
 #endif /* Cell_hpp */

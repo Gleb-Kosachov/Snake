@@ -6,6 +6,9 @@
 //
 
 #include "Game.hpp"
+#include "Apple.hpp"
+#include "SnakeBody.hpp"
+#include "SnakeHead.hpp"
 #include <thread>
 #include <chrono>
 #include <iostream>
@@ -99,8 +102,6 @@ void Game::Run()
                 case CollisionResult::GAME_OVER:
                     Running = false;
                     break;
-                default:
-                    throw std::runtime_error("Head collides with itself");
             }
             delete Encountered;
         }
